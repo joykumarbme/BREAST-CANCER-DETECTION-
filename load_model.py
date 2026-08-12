@@ -1,0 +1,289 @@
+import joblib
+
+model = joblib.load("breast_cancer_random_forest_model.pkl")
+
+print("Model loaded successfully!")
+print(model)
+import joblib
+
+# Load trained model
+model = joblib.load("breast_cancer_random_forest_model.pkl")
+
+# Load scaler
+scaler = joblib.load("breast_cancer_scaler.pkl")
+
+# Load feature selector
+selector = joblib.load("breast_cancer_feature_selector.pkl")
+
+print("================================")
+print("All files loaded successfully!")
+print("================================")
+
+print("\nModel:")
+print(model)
+
+print("\nScaler:")
+print(scaler)
+
+print("\nFeature Selector:")
+print(selector)
+import joblib
+
+# Load trained ML components
+model = joblib.load("breast_cancer_random_forest_model.pkl")
+scaler = joblib.load("breast_cancer_scaler.pkl")
+selector = joblib.load("breast_cancer_feature_selector.pkl")
+
+print("========================================")
+print("BREAST CANCER PREDICTION SYSTEM")
+print("========================================")
+print("Model loaded successfully!")
+print("Scaler loaded successfully!")
+print("Feature selector loaded successfully!")
+import joblib
+import pandas as pd
+
+# ==========================================
+# LOAD TRAINED MODEL
+# ==========================================
+
+model = joblib.load("breast_cancer_random_forest_model.pkl")
+scaler = joblib.load("breast_cancer_scaler.pkl")
+selector = joblib.load("breast_cancer_feature_selector.pkl")
+
+print("\n==========================================")
+print("     BREAST CANCER PREDICTION SYSTEM")
+print("==========================================\n")
+
+
+# ==========================================
+# PATIENT INFORMATION
+# ==========================================
+
+age = float(input("Enter Age: "))
+
+gender = input("Enter Gender (Female/Male): ")
+
+systolic_bp = float(input("Enter Systolic Blood Pressure: "))
+diastolic_bp = float(input("Enter Diastolic Blood Pressure: "))
+
+cholesterol = float(input("Enter Cholesterol level (mg/dL): "))
+glucose = float(input("Enter Glucose level (mg/dL): "))
+
+bmi = float(input("Enter BMI: "))
+
+family_history = int(
+    input("Family history of breast cancer? (1=Yes, 0=No): ")
+)
+
+smoking = int(
+    input("Smoking? (1=Yes, 0=No): ")
+)
+
+alcohol_use = int(
+    input("Alcohol use? (1=Yes, 0=No): ")
+)
+
+menopause = int(
+    input("Menopause? (1=Yes, 0=No): ")
+)
+
+hormonal_therapy = int(
+    input("Hormonal therapy? (1=Yes, 0=No): ")
+)
+
+previous_benign = int(
+    input("Previous benign breast disease? (1=Yes, 0=No): ")
+)
+
+breast_lump = int(
+    input("Breast lump? (1=Yes, 0=No): ")
+)
+
+breast_pain = int(
+    input("Breast pain? (1=Yes, 0=No): ")
+)
+
+nipple_discharge = int(
+    input("Nipple discharge? (1=Yes, 0=No): ")
+)
+
+skin_changes = int(
+    input("Skin changes? (1=Yes, 0=No): ")
+)
+
+axillary_nodes = float(
+    input("Number of axillary lymph nodes: ")
+)
+
+tumor_size = float(
+    input("Tumor size (mm): ")
+)
+
+birads = int(
+    input("BI-RADS score (1-5): ")
+)
+
+ultrasound = float(
+    input("Ultrasound irregularity score (0-1): ")
+)
+
+mammographic_density = float(
+    input("Mammographic density score (0-1): ")
+)
+
+radius = float(input("Nucleus radius: "))
+perimeter = float(input("Nucleus perimeter: "))
+area = float(input("Nucleus area: "))
+texture = float(input("Nucleus texture: "))
+smoothness = float(input("Nucleus smoothness: "))
+compactness = float(input("Nucleus compactness: "))
+concavity = float(input("Nucleus concavity: "))
+concave_points = float(input("Nucleus concave points: "))
+symmetry = float(input("Nucleus symmetry: "))
+fractal_dimension = float(
+    input("Nucleus fractal dimension: ")
+)
+
+
+# ==========================================
+# CREATE PATIENT DATAFRAME
+# ==========================================
+
+patient = pd.DataFrame({
+    "Age_years": [age],
+    "Gender": [gender],
+    "Systolic_BP_mmHg": [systolic_bp],
+    "Diastolic_BP_mmHg": [diastolic_bp],
+    "Cholesterol_mg_dL": [cholesterol],
+    "Glucose_mg_dL": [glucose],
+    "BMI_kg_m2": [bmi],
+
+    "Family_History_Breast_Cancer": [family_history],
+    "Smoking": [smoking],
+    "Alcohol_Use": [alcohol_use],
+    "Menopause": [menopause],
+    "Hormonal_Therapy": [hormonal_therapy],
+    "Previous_Benign_Breast_Disease": [previous_benign],
+
+    "Breast_Lump": [breast_lump],
+    "Breast_Pain": [breast_pain],
+    "Nipple_Discharge": [nipple_discharge],
+    "Skin_Changes": [skin_changes],
+
+    "Axillary_Lymph_Nodes": [axillary_nodes],
+    "Tumor_Size_mm": [tumor_size],
+
+    "BI_RADS": [birads],
+    "Ultrasound_Irregularity_Score": [ultrasound],
+    "Mammographic_Density_Score": [mammographic_density],
+
+    "Nucleus_Radius": [radius],
+    "Nucleus_Perimeter": [perimeter],
+    "Nucleus_Area": [area],
+    "Nucleus_Texture": [texture],
+    "Nucleus_Smoothness": [smoothness],
+    "Nucleus_Compactness": [compactness],
+    "Nucleus_Concavity": [concavity],
+    "Nucleus_Concave_Points": [concave_points],
+    "Nucleus_Symmetry": [symmetry],
+    "Nucleus_Fractal_Dimension": [fractal_dimension]
+})
+
+
+# ==========================================
+# ENCODE GENDER
+# ==========================================
+
+patient["Gender"] = patient["Gender"].map({
+    "Female": 0,
+    "Male": 1
+})
+
+
+# ==========================================
+# LOAD ORIGINAL FEATURE ORDER
+# ==========================================
+
+# These are the features used during training
+training_features = [
+    "Age_years",
+    "Gender",
+    "Systolic_BP_mmHg",
+    "Diastolic_BP_mmHg",
+    "Cholesterol_mg_dL",
+    "Glucose_mg_dL",
+    "BMI_kg_m2",
+    "Family_History_Breast_Cancer",
+    "Smoking",
+    "Alcohol_Use",
+    "Menopause",
+    "Hormonal_Therapy",
+    "Previous_Benign_Breast_Disease",
+    "Breast_Lump",
+    "Breast_Pain",
+    "Nipple_Discharge",
+    "Skin_Changes",
+    "Axillary_Lymph_Nodes",
+    "Tumor_Size_mm",
+    "BI_RADS",
+    "Ultrasound_Irregularity_Score",
+    "Mammographic_Density_Score",
+    "Nucleus_Radius",
+    "Nucleus_Perimeter",
+    "Nucleus_Area",
+    "Nucleus_Texture",
+    "Nucleus_Smoothness",
+    "Nucleus_Compactness",
+    "Nucleus_Concavity",
+    "Nucleus_Concave_Points",
+    "Nucleus_Symmetry",
+    "Nucleus_Fractal_Dimension"
+]
+
+patient = patient[training_features]
+
+
+# ==========================================
+# SCALE FEATURES
+# ==========================================
+
+patient_scaled = scaler.transform(patient)
+
+
+# ==========================================
+# FEATURE SELECTION
+# ==========================================
+
+patient_selected = selector.transform(patient_scaled)
+
+
+# ==========================================
+# PREDICTION
+# ==========================================
+
+prediction = model.predict(patient_selected)
+
+probability = model.predict_proba(
+    patient_selected
+)[0][1]
+
+
+# ==========================================
+# DISPLAY RESULT
+# ==========================================
+
+print("\n==========================================")
+print("             PREDICTION RESULT")
+print("==========================================")
+
+if prediction[0] == 1:
+    print("Prediction: MALIGNANT")
+else:
+    print("Prediction: BENIGN")
+
+print(
+    f"Malignant probability: {probability * 100:.2f}%"
+)
+
+print("==========================================")
